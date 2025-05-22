@@ -1,0 +1,25 @@
+{
+  "name": "mana-website",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@pinecone-database/pinecone": "^1.1.3",
+    "node-fetch": "^3.3.2"
+  },
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DilyanM/Meme_Anarchic_Numismatic_Asset.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DilyanM/Meme_Anarchic_Numismatic_Asset/issues"
+  },
+  "homepage": "https://github.com/DilyanM/Meme_Anarchic_Numismatic_Asset#readme",
+  "description": ""
+}

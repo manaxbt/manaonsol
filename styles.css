@@ -1337,7 +1337,7 @@ nav ul {
     }
 
     .intro-ascii {
-        font-size: 0.55rem;
+        font-size: 0.2rem;
         padding: 1vw 0;
         max-width: 100vw;
         max-height: 60vh;
@@ -1489,7 +1489,7 @@ nav ul {
 
 @media (max-width: 768px) {
   .intro-ascii {
-    font-size: 0.55rem;
+    font-size: 0.2rem;
     padding: 1vw 0;
     max-width: 100vw;
     max-height: 60vh;
@@ -1521,9 +1521,9 @@ nav ul {
 }
 @media (max-width: 768px) {
   .ascii-cow {
-    font-size: 0.4rem;
+    font-size: 0.2rem;
   }
   .intro-ascii {
-    font-size: 0.4rem;
+    font-size: 0.2rem;
   }
 }

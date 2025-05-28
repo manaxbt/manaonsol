@@ -1499,3 +1499,31 @@ nav ul {
     margin: 2vh auto 1vh auto;
   }
 }
+
+.ascii-cow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.ascii-cow {
+  font-family: 'Courier New', monospace;
+  font-size: 0.45rem;
+  color: #f0f0f0;
+  background: #111;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  white-space: pre;
+  display: block;
+}
+@media (max-width: 768px) {
+  .ascii-cow {
+    font-size: 0.4rem;
+  }
+  .intro-ascii {
+    font-size: 0.4rem;
+  }
+}

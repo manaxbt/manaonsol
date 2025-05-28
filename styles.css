@@ -1458,3 +1458,30 @@ nav ul {
         background-color: #00cc7a;
     }
 }
+
+.intro-ascii {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  color: #f0f0f0;
+  background: #111;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+  padding: 2vw 2vw 2vw 2vw;
+  margin: 4vh auto 2vh auto;
+  max-width: 98vw;
+  max-height: 70vh;
+  overflow-x: auto;
+  white-space: pre;
+  display: block;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .intro-ascii {
+    font-size: 0.85rem;
+    padding: 2vw 1vw;
+    max-width: 99vw;
+    max-height: 60vh;
+    overflow-x: auto;
+  }
+}

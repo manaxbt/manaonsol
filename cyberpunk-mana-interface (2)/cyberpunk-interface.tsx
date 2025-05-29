@@ -570,7 +570,19 @@ export default function Component() {
   if (showMainWebsite) {
     return (
       <div className="min-h-screen bg-[#0a0c16] text-gray-100 font-mono relative overflow-hidden">
-        {/* Background Video Placeholder */}
+        {/* Background Video */}
+        <video 
+          id="background-video" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="fixed inset-0 w-full h-full object-cover -z-10"
+        >
+          <source src="/assets/animation-1.mp4" type="video/mp4" />
+        </video>
+
+        {/* Background Overlay */}
         <div className="fixed inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 -z-10" />
 
         {/* Header */}
@@ -866,6 +878,16 @@ export default function Component() {
           </div>
         )}
       </div>
+
+      {/* Transition Video */}
+      <video 
+        id="transition-video" 
+        className="hidden" 
+        muted 
+        playsInline
+      >
+        <source src="/assets/transition-video.mp4" type="video/mp4" />
+      </video>
 
       <style>{`
         @keyframes fade-in {

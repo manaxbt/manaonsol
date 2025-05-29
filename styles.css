@@ -1346,6 +1346,9 @@ nav ul {
         overflow-y: auto;
         margin: 2vh auto 1vh auto;
     }
+    .ascii-cow {
+        font-size: 0.2rem;
+    }
 }
 
 /* Desktop: Hide Buy $MANA button in main content */

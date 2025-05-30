@@ -43,6 +43,9 @@ export default function Component() {
   const [chatboxVisible, setChatboxVisible] = useState(false)
   const [currentPage, setCurrentPage] = useState<"home" | "roadmap" | "ecosystem" | "tree-roadmap">("home")
   const [expandedPhase, setExpandedPhase] = useState<number | null>(null)
+  const [hasPlayedTransition, setHasPlayedTransition] = useState(false)
+  const [pendingPage, setPendingPage] = useState<null | "home" | "roadmap" | "ecosystem" | "tree-roadmap">(null)
+  const [showTransition, setShowTransition] = useState(false)
 
   useEffect(() => {
     if (currentAsciiIndex < asciiArt.length) {
@@ -94,15 +97,43 @@ export default function Component() {
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown)
   }
 
-  const navigateToPage = (page: "home" | "roadmap" | "ecosystem" | "tree-roadmap") => {
-    setCurrentPage(page)
-    setActiveDropdown(null)
-    setMobileMenuOpen(false)
+  const handleMenuNavigation = (page: "home" | "roadmap" | "ecosystem" | "tree-roadmap") => {
+    if (!hasPlayedTransition && currentPage === "home" && page !== "home") {
+      setShowTransition(true)
+      setPendingPage(page)
+    } else {
+      setCurrentPage(page)
+      setActiveDropdown(null)
+      setMobileMenuOpen(false)
+    }
   }
+
+  // When transition video ends, show the target page and never play again
+  useEffect(() => {
+    if (showTransition && pendingPage) {
+      const handleEnded = () => {
+        setShowTransition(false)
+        setHasPlayedTransition(true)
+        setCurrentPage(pendingPage)
+        setActiveDropdown(null)
+        setMobileMenuOpen(false)
+        setPendingPage(null)
+      }
+      const video = document.getElementById('transition-video') as HTMLVideoElement | null
+      if (video) {
+        video.currentTime = 0
+        video.play()
+        video.onended = handleEnded
+      }
+      return () => {
+        if (video) video.onended = null
+      }
+    }
+  }, [showTransition, pendingPage])
 
   const RoadmapContent = () => (
     <div className="max-w-4xl mx-auto space-y-8 text-sm sm:text-base">
-      <button onClick={() => navigateToPage("home")} className="text-green-400 hover:text-green-300 mb-4">
+      <button onClick={() => handleMenuNavigation("home")} className="text-green-400 hover:text-green-300 mb-4">
         ← Back
       </button>
 
@@ -242,7 +273,7 @@ export default function Component() {
 
   const EcosystemContent = () => (
     <div className="max-w-4xl mx-auto space-y-8 text-sm sm:text-base">
-      <button onClick={() => navigateToPage("home")} className="text-green-400 hover:text-green-300 mb-4">
+      <button onClick={() => handleMenuNavigation("home")} className="text-green-400 hover:text-green-300 mb-4">
         ← Back
       </button>
 
@@ -347,8 +378,19 @@ export default function Component() {
     ]
 
     return (
-      <div className="max-w-4xl mx-auto space-y-8 text-sm sm:text-base">
-        <button onClick={() => navigateToPage("home")} className="text-green-400 hover:text-green-300 mb-4">
+      <div className="relative max-w-4xl mx-auto space-y-8 text-sm sm:text-base">
+        {/* Background Video for TREE Roadmap */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="fixed inset-0 w-full h-full object-cover z-0 pointer-events-none"
+          style={{ zIndex: 0 }}
+        >
+          <source src="/animation-4.mp4" type="video/mp4" />
+        </video>
+        <button onClick={() => handleMenuNavigation("home")} className="text-green-400 hover:text-green-300 mb-4 relative z-10">
           ← Back
         </button>
 
@@ -622,19 +664,19 @@ export default function Component() {
                   <div className="absolute top-full left-0 mt-2 bg-gray-800 border border-green-400 rounded p-2 min-w-40 z-50">
                     <button
                       className="block py-1 hover:text-green-300 w-full text-left"
-                      onClick={() => navigateToPage("roadmap")}
+                      onClick={() => handleMenuNavigation("roadmap")}
                     >
                       MANA Origin Story
                     </button>
                     <button
                       className="block py-1 hover:text-green-300 w-full text-left"
-                      onClick={() => navigateToPage("roadmap")}
+                      onClick={() => handleMenuNavigation("roadmap")}
                     >
                       MANA Roadmap
                     </button>
                     <button
                       className="block py-1 hover:text-green-300 w-full text-left"
-                      onClick={() => navigateToPage("tree-roadmap")}
+                      onClick={() => handleMenuNavigation("tree-roadmap")}
                     >
                       TREE Roadmap
                     </button>
@@ -642,7 +684,7 @@ export default function Component() {
                 )}
               </li>
               <li>
-                <button className="text-green-400 hover:text-green-300" onClick={() => navigateToPage("ecosystem")}>
+                <button className="text-green-400 hover:text-green-300" onClick={() => handleMenuNavigation("ecosystem")}>
                   Ecosystem
                 </button>
               </li>
@@ -808,6 +850,101 @@ export default function Component() {
             <span>Chat with MANA</span>
           </button>
         )}
+
+        {/* Render the transition video overlay if needed */}
+        {showTransition && (
+          <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
+            <video
+              id="transition-video"
+              src="/animation-3.mp4"
+              autoPlay
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  // Main homepage with looping background video
+  if (currentPage === "home" && !showTransition) {
+    return (
+      <div className="relative min-h-screen bg-[#0a0c16] text-gray-100 px-0 pt-4 pb-4 font-mono flex flex-col items-center justify-center sm:px-4 overflow-hidden">
+        {/* Background Video for Home */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="fixed inset-0 w-full h-full object-cover z-0 pointer-events-none"
+          style={{ zIndex: 0 }}
+        >
+          <source src="/animation-1.mp4" type="video/mp4" />
+        </video>
+        <div className="w-full max-w-4xl space-y-8 relative z-10">
+          {/* ASCII Art Section */}
+          <div className="w-full flex justify-center">
+            <pre className="ascii-art-pre ascii-art-bubble w-full md:max-w-fit md:mx-auto text-left text-base sm:text-lg md:text-xl lg:text-2xl whitespace-pre overflow-x-auto bg-transparent p-4 md:p-8 rounded-none shadow-none">
+              {displayedAscii}
+              {currentAsciiIndex < asciiArt.length && <span className="animate-pulse">|</span>}
+            </pre>
+          </div>
+
+          {/* Bottom Text Section */}
+          {showBottomText && (
+            <div className="text-center space-y-4 px-2 md:px-8">
+              {displayedBottomLines.map((line, index) => {
+                if (!line) return <p key={index} className="text-base sm:text-lg md:text-xl lg:text-2xl"></p>
+
+                return (
+                  <p key={index} className="text-base sm:text-lg md:text-xl lg:text-2xl bg-transparent p-2 md:p-4 rounded-none shadow-none">
+                    {line.includes("$MANA") ? (
+                      <>
+                        {line.split("$MANA")[0]}
+                        <span className="font-bold">$MANA</span>
+                        {line.split("$MANA")[1]}
+                      </>
+                    ) : (
+                      line
+                    )}
+                    {index === currentBottomLine &&
+                      currentBottomChar >= (bottomText[currentBottomLine]?.length || 0) &&
+                      currentBottomLine < bottomText.length && <span className="animate-pulse">|</span>}
+                  </p>
+                )
+              })}
+            </div>
+          )}
+
+          {/* Call to Action Button */}
+          {showButton && (
+            <div className="flex justify-center pt-6 animate-fade-in">
+              <Button
+                onClick={handlePlantSeed}
+                variant="outline"
+                className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black bg-transparent px-8 py-2 font-mono transition-all duration-300"
+              >
+                Follow the Cow down the rabbit hole...
+              </Button>
+            </div>
+          )}
+        </div>
+
+        <style>{`
+          @keyframes fade-in {
+            from {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          .animate-fade-in {
+            animation: fade-in 0.5s ease-out;
+          }
+        `}</style>
       </div>
     )
   }

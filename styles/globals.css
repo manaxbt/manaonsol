@@ -9,14 +9,14 @@ body {
 /* Responsive ASCII art scaling for mobile */
 @media (max-width: 600px) {
   .ascii-art-pre {
-    font-size: min(1.8vw, 14px) !important;
+    font-size: min(1vw, 10px) !important;
     width: 100vw !important;
     max-width: 100vw !important;
     box-sizing: border-box;
     white-space: pre;
-    overflow-x: auto;
-    padding-left: 2vw !important;
-    padding-right: 2vw !important;
+    overflow-x: hidden;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 

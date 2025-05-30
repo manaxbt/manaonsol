@@ -13,9 +13,9 @@ export default function Component() {
 ------------------------------------------
                 \\   ^__^
                  \\  (oo)\\________
-                     (__)\\        )\\/\\
-                         ||----w |
-                         ||     ||`
+                    (__)\\        )\\/\\
+                        ||----w |
+                        ||     ||`
 
   const bottomText = [
     "as more adopt $MANA the old fiat order will wither on the vine",
@@ -817,7 +817,7 @@ export default function Component() {
       <div className="w-full max-w-4xl space-y-8">
         {/* ASCII Art Section */}
         <div className="text-center">
-          <pre className="ascii-art-pre inline-block text-left text-base sm:text-lg md:text-xl lg:text-2xl whitespace-pre overflow-x-auto bg-transparent p-4 md:p-8 rounded-none shadow-none">
+          <pre className="ascii-art-pre w-full text-left text-base sm:text-lg md:text-xl lg:text-2xl whitespace-pre overflow-x-auto bg-transparent p-4 md:p-8 rounded-none shadow-none">
             {displayedAscii}
             {currentAsciiIndex < asciiArt.length && <span className="animate-pulse">|</span>}
           </pre>
@@ -857,7 +857,7 @@ export default function Component() {
               variant="outline"
               className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black bg-transparent px-8 py-2 font-mono transition-all duration-300"
             >
-              Plant a digital seed
+              Enter the Infinite Backrooms
             </Button>
           </div>
         )}

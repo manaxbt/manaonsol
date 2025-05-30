@@ -12,7 +12,7 @@ const nextConfig = {
   output: 'export',
   trailingSlash: true,
   distDir: '.next',
-  assetPrefix: '.',
+  assetPrefix: '',
 }
 
 export default nextConfig

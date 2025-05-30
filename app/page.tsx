@@ -1,4 +1,4 @@
-import CyberpunkInterface from "../cyberpunk-interface"
+import CyberpunkInterface from "../components/cyberpunk-interface"
 
 export default function Page() {
   return <CyberpunkInterface />

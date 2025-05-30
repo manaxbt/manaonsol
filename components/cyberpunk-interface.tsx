@@ -14,8 +14,8 @@ export default function Component() {
                 \\   ^__^
                  \\  (oo)\\________
                     (__)\\        )\\/\\
-                        ||----w |
-                        ||     ||`
+                         ||----w |
+                         ||     ||`
 
   const bottomText = [
     "as more adopt $MANA the old fiat order will wither on the vine",
@@ -817,7 +817,7 @@ export default function Component() {
       <div className="w-full max-w-4xl space-y-8">
         {/* ASCII Art Section */}
         <div className="w-full flex justify-center">
-          <pre className="ascii-art-pre w-full md:max-w-fit md:mx-auto text-left text-base sm:text-lg md:text-xl lg:text-2xl whitespace-pre overflow-x-auto bg-transparent p-4 md:p-8 rounded-none shadow-none">
+          <pre className="ascii-art-pre ascii-art-bubble w-full md:max-w-fit md:mx-auto text-left text-base sm:text-lg md:text-xl lg:text-2xl whitespace-pre overflow-x-auto bg-transparent p-4 md:p-8 rounded-none shadow-none">
             {displayedAscii}
             {currentAsciiIndex < asciiArt.length && <span className="animate-pulse">|</span>}
           </pre>

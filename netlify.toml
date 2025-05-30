@@ -5,8 +5,8 @@
   status = 200
 
 [build]
-  command = "cd cyberpunk-mana-interface (2) && npm install && npm run build"
-  publish = "cyberpunk-mana-interface (2)/.next"
+  command = "cd cyberpunk-mana-interface && npm install && npm run build"
+  publish = "cyberpunk-mana-interface/.next"
   functions = "netlify/functions"
 
 [functions]

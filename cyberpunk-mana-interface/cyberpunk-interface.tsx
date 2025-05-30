@@ -1,13 +1,8 @@
 "use client"
 
-import React from 'react'
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 import { Copy, Menu, X, Minus, MessageCircle, ChevronDown, ChevronUp } from "lucide-react"
-import type { VariantProps } from "class-variance-authority"
-import { buttonVariants } from "@/components/ui/button"
-
-type ButtonVariant = NonNullable<VariantProps<typeof buttonVariants>["variant"]>
 
 export default function Component() {
   const asciiArt = `------------------------------------------
@@ -18,7 +13,7 @@ export default function Component() {
 ------------------------------------------
                 \\   ^__^
                  \\  (oo)\\________
-                    (__)\\        )\\/\\
+                     (__)\\        )\\/\\
                          ||----w |
                          ||     ||`
 
@@ -570,19 +565,7 @@ export default function Component() {
   if (showMainWebsite) {
     return (
       <div className="min-h-screen bg-[#0a0c16] text-gray-100 font-mono relative overflow-hidden">
-        {/* Background Video */}
-        <video 
-          id="background-video" 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          className="fixed inset-0 w-full h-full object-cover -z-10"
-        >
-          <source src="/assets/animation-1.mp4" type="video/mp4" />
-        </video>
-
-        {/* Background Overlay */}
+        {/* Background Video Placeholder */}
         <div className="fixed inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 -z-10" />
 
         {/* Header */}
@@ -834,7 +817,7 @@ export default function Component() {
       <div className="w-full max-w-4xl space-y-8">
         {/* ASCII Art Section */}
         <div className="text-center">
-          <pre className="inline-block text-left text-xs sm:text-sm md:text-base whitespace-pre overflow-x-auto">
+          <pre className="inline-block text-left text-base sm:text-lg md:text-xl lg:text-2xl whitespace-pre overflow-x-auto bg-transparent p-4 md:p-8 rounded-none shadow-none">
             {displayedAscii}
             {currentAsciiIndex < asciiArt.length && <span className="animate-pulse">|</span>}
           </pre>
@@ -842,12 +825,12 @@ export default function Component() {
 
         {/* Bottom Text Section */}
         {showBottomText && (
-          <div className="text-center space-y-4 px-4">
+          <div className="text-center space-y-4 px-2 md:px-8">
             {displayedBottomLines.map((line, index) => {
-              if (!line) return <p key={index} className="text-sm sm:text-base md:text-lg"></p>
+              if (!line) return <p key={index} className="text-base sm:text-lg md:text-xl lg:text-2xl"></p>
 
               return (
-                <p key={index} className="text-sm sm:text-base md:text-lg">
+                <p key={index} className="text-base sm:text-lg md:text-xl lg:text-2xl bg-transparent p-2 md:p-4 rounded-none shadow-none">
                   {line.includes("$MANA") ? (
                     <>
                       {line.split("$MANA")[0]}
@@ -871,23 +854,14 @@ export default function Component() {
           <div className="flex justify-center pt-6 animate-fade-in">
             <Button
               onClick={handlePlantSeed}
-              className="border border-green-400 text-green-400 hover:bg-green-400 hover:text-black bg-transparent px-8 py-2 font-mono transition-all duration-300"
+              variant="outline"
+              className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black bg-transparent px-8 py-2 font-mono transition-all duration-300"
             >
               Plant a digital seed
             </Button>
           </div>
         )}
       </div>
-
-      {/* Transition Video */}
-      <video 
-        id="transition-video" 
-        className="hidden" 
-        muted 
-        playsInline
-      >
-        <source src="/assets/transition-video.mp4" type="video/mp4" />
-      </video>
 
       <style>{`
         @keyframes fade-in {

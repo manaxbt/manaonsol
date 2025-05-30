@@ -813,11 +813,11 @@ export default function Component() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0c16] text-gray-100 p-4 font-mono flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-[#0a0c16] text-gray-100 px-0 pt-4 pb-4 font-mono flex flex-col items-center justify-center sm:px-4">
       <div className="w-full max-w-4xl space-y-8">
         {/* ASCII Art Section */}
-        <div className="text-center">
-          <pre className="ascii-art-pre w-full text-left text-base sm:text-lg md:text-xl lg:text-2xl whitespace-pre overflow-x-auto bg-transparent p-4 md:p-8 rounded-none shadow-none">
+        <div className="w-full flex justify-center">
+          <pre className="ascii-art-pre w-full md:max-w-fit md:mx-auto text-left text-base sm:text-lg md:text-xl lg:text-2xl whitespace-pre overflow-x-auto bg-transparent p-4 md:p-8 rounded-none shadow-none">
             {displayedAscii}
             {currentAsciiIndex < asciiArt.length && <span className="animate-pulse">|</span>}
           </pre>
@@ -857,7 +857,7 @@ export default function Component() {
               variant="outline"
               className="border-green-400 text-green-400 hover:bg-green-400 hover:text-black bg-transparent px-8 py-2 font-mono transition-all duration-300"
             >
-              Enter the Infinite Backrooms
+              Follow the Cow down the rabbit hole...
             </Button>
           </div>
         )}
